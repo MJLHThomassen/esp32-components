@@ -1,7 +1,7 @@
 idf_component_register(
-	SRCS 
-		"ds1307.c"
+    SRCS 
+        "ds1307.c"
 
-	INCLUDE_DIRS
-		"include"
-	)
+    INCLUDE_DIRS
+        "include"
+    )
