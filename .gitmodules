@@ -1,0 +1,6 @@
+[submodule "frozen/frozen"]
+	path = frozen/frozen
+	url = https://github.com/cesanta/frozen.git
+[submodule "mongoose7/mongoose"]
+	path = mongoose7/mongoose
+	url = https://github.com/cesanta/mongoose.git
