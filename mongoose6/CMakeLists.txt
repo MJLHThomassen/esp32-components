@@ -8,6 +8,17 @@ idf_component_register(
 		"mongoose"
 		
 	REQUIRES
-		"mbedtls")
+		mbedtls
+)
 
-target_compile_options(${COMPONENT_LIB} PUBLIC -Werror=format-truncation=0 -DMG_LOCALS=1)
+target_compile_options(
+	${COMPONENT_LIB}
+		PUBLIC
+			-Werror=format-truncation=0
+)
+
+target_compile_definitions(
+	${COMPONENT_LIB}
+		PUBLIC
+			MG_LOCALS=1
+)		
