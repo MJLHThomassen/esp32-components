@@ -1,0 +1,38 @@
+
+set(WEBSERVER_IMPL_SRCS)
+set(WEBSERVER_IMPL_DEFS
+    WEBSERVER_HOST="${CONFIG_WEBSERVER_HOST}")
+
+if(CONFIG_WEBSERVER_IMPLEMENTATION_MONGOOSE7)
+    list(APPEND WEBSERVER_IMPL_SRCS "mongoose7_webserver_thread.c")
+    list(APPEND WEBSERVER_IMPL_DEFS MONGOOSE7_WEBSERVER_THREAD)
+endif()
+
+if(CONFIG_WEBSERVER_SERVE_FILES)
+
+    list(APPEND WEBSERVER_IMPL_DEFS WEBSERVER_ROOT="${CONFIG_WEBSERVER_ROOT}")
+
+    if(CONFIG_WEBSERVER_ROOT_ON_SPIFFS)
+        list(APPEND WEBSERVER_IMPL_DEFS WEBSERVER_ROOT_ON_SPIFFS)
+    endif()
+else()
+    list(APPEND WEBSERVER_IMPL_DEFS WEBSERVER_ROOT=NULL)
+endif()
+
+idf_component_register(
+    SRCS 
+        "webserver_task.c"
+        ${WEBSERVER_IMPL_SRCS}
+
+    INCLUDE_DIRS
+        "include"
+
+    REQUIRES
+        mongoose7
+
+    PRIV_REQUIRES
+        utilities
+        logger
+    )
+
+target_compile_definitions(${COMPONENT_LIB} PUBLIC ${WEBSERVER_IMPL_DEFS})

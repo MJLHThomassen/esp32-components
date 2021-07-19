@@ -1,0 +1,42 @@
+menu "Webserver Task"
+
+    choice WEBSERVER_IMPLEMENTATION
+        prompt "Webserver Implementation"
+        default WEBSERVER_IMPLEMENTATION_MONGOOSE7
+        help
+            Select the implementation of the webserver.
+
+        config WEBSERVER_IMPLEMENTATION_MONGOOSE7
+            bool "Mongoose 7"
+            help
+                Use Mongoose v7.x as the implementation for the webserver.
+
+    endchoice
+
+    config WEBSERVER_HOST
+        string "Webserver Host address"
+        default "0.0.0.0:80"
+        help
+            Set the host address for the webserver to be served on in the form of ip:port.
+
+    menuconfig WEBSERVER_SERVE_FILES
+        bool "Have webserver serve files"
+        default n
+        help
+            Select this to have the webserver implemenation automatically serve files from WEBSERVER_ROOT.
+
+    if WEBSERVER_SERVE_FILES
+        config WEBSERVER_ROOT
+            string "Webserver root directory"
+            default "/data/www"
+            help
+                Root directory for webserver to serve files from.
+
+        config WEBSERVER_ROOT_ON_SPIFFS
+            bool "Webserver root on SPIFFS"
+            default y
+            help
+                Select this if your webroot is located on a SPIFFS filesystem.
+    endif
+
+endmenu

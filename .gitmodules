@@ -4,3 +4,9 @@
 [submodule "mongoose7/mongoose"]
 	path = mongoose7/mongoose
 	url = https://github.com/cesanta/mongoose.git
+[submodule "cedux/cedux"]
+	path = cedux/cedux
+	url = https://github.com/JSchaenzle/cedux.git
+[submodule "libyuarel/libyuarel"]
+	path = libyuarel/libyuarel
+	url = https://github.com/jacketizer/libyuarel.git
